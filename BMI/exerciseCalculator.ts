@@ -1,3 +1,5 @@
+import { isNotNumber } from "./isNotNumber";
+
 interface finalResult {
     periodLength: number;
     trainingDays: number;
@@ -8,7 +10,8 @@ interface finalResult {
     average: number;
   }
 
-const calculateExercises = (weekHours:number[],target:number): finalResult =>{
+
+const calculateExercises = (target:number,weekHours:number[]): finalResult =>{
     const periodLength = weekHours.length
     const trainingDays = weekHours.filter((day)=>day!==0).length
     const totalHours= weekHours.reduce((acc, day) => acc + day, 0)
@@ -47,5 +50,15 @@ const calculateExercises = (weekHours:number[],target:number): finalResult =>{
     return result
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1],2))
+const argsBool = process.argv.slice(3).map((arg)=>isNotNumber(arg))
+
+if(argsBool.every((bool)=>bool)){
+    console.log("There is argument that is not a number")
+}else{
+    const a : number = Number(process.argv[2])
+    const b: Array<number> = process.argv.slice(3).map(Number)
+    console.log(calculateExercises(a,b))
+}
+
+
 

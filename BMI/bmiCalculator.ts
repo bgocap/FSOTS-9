@@ -1,7 +1,11 @@
+import { isNotNumber } from "./isNotNumber";
+
 type Result = string;
 
 const calculateBmi = (height:number,weight:number): Result =>{
-   const bmi = weight/(((height*0.01)*(height*0.01)));
+
+    const bmi = weight/(((height*0.01)*(height*0.01)));
+    
    switch (true) {
     case bmi<16 :
         return "Underweight (Severe thinness)"
@@ -23,4 +27,11 @@ const calculateBmi = (height:number,weight:number): Result =>{
    }
 }
 
-console.log(calculateBmi(180, 73))
+if(isNotNumber(process.argv[2]) || isNotNumber(process.argv[3])){
+    console.log("One of the arguments is not a number")
+}else{
+    const a  : number = Number(process.argv[2])
+    const b : number = Number(process.argv[3])
+    console.log(calculateBmi(a,b))
+}
+
