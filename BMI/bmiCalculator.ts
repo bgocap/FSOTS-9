@@ -1,8 +1,9 @@
 import { isNotNumber } from "./isNotNumber";
 
 type Result = string;
+type Output = object;
 
-const calculateBmi = (height:number,weight:number): Result =>{
+export const calculateBmi = (height:number,weight:number): Result =>{
 
     const bmi = weight/(((height*0.01)*(height*0.01)));
     
@@ -23,15 +24,22 @@ const calculateBmi = (height:number,weight:number): Result =>{
         return "Obese (Class II)"
     case bmi>=40:
         return "Obese (Class III)"
+    default :
+        return "Something  went wrong"
 
    }
 }
 
-if(isNotNumber(process.argv[2]) || isNotNumber(process.argv[3])){
-    console.log("One of the arguments is not a number")
-}else{
-    const a  : number = Number(process.argv[2])
-    const b : number = Number(process.argv[3])
-    console.log(calculateBmi(a,b))
+export const bmiCalculator = (arg1:any,arg2:any) : Output =>{
+    if(isNotNumber(arg1) || isNotNumber(arg2)){
+        return({
+            error: "malformatted parameters"
+          })
+    }else{
+        const a  : number = Number(arg1)
+        const b : number = Number(arg2)
+        return({height:arg1,weight:arg2,bmi:calculateBmi(a,b)})
+    }
 }
+
 
