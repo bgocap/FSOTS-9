@@ -9,7 +9,16 @@ app.get('/hello', (_req, res) => {
 
 app.get('/bmi', (req, res) => {
   const { height, weight } = req.query;
-  res.send(bmiCalculator(height,weight));
+  try{
+    res.send(bmiCalculator(height,weight));
+  }catch{
+    res.status(400).send({
+      error: "malformatted parameters"
+    });
+
+  }
+  
+ 
 });
 
 const PORT = 3003;

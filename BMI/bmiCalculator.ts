@@ -32,9 +32,7 @@ export const calculateBmi = (height:number,weight:number): Result =>{
 
 export const bmiCalculator = (arg1:any,arg2:any) : Output =>{
     if(isNotNumber(arg1) || isNotNumber(arg2)){
-        return({
-            error: "malformatted parameters"
-          })
+        throw new Error;
     }else{
         const a  : number = Number(arg1)
         const b : number = Number(arg2)
