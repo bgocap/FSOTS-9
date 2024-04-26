@@ -1,4 +1,5 @@
 import express = require('express');
+// eslint-disable-next-line import/no-unresolved
 import { bmiCalculator } from './bmiCalculator';
 
 const app = express();
@@ -9,16 +10,16 @@ app.get('/hello', (_req, res) => {
 
 app.get('/bmi', (req, res) => {
   const { height, weight } = req.query;
-  try{
-    res.send(bmiCalculator(height,weight));
-  }catch{
+  try {
+    res.send(bmiCalculator(height, weight));
+  } catch {
     res.status(400).send({
       error: "malformatted parameters"
     });
 
   }
-  
- 
+
+
 });
 
 const PORT = 3003;
