@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
-import { isNotNumber } from "./isNotNumber";
+//import { isNotNumber } from "./isNotNumber";
 
-interface finalResult {
+export interface finalResult {
     periodLength: number;
     trainingDays: number;
     success: boolean;
@@ -12,7 +12,7 @@ interface finalResult {
 }
 
 
-const calculateExercises = (target: number, weekHours: number[]): finalResult => {
+export const calculateExercises = (target: number, weekHours: number[]): finalResult => {
     const periodLength = weekHours.length;
     const trainingDays = weekHours.filter((day) => day !== 0).length;
     const totalHours = weekHours.reduce((acc, day) => acc + day, 0);
@@ -51,15 +51,18 @@ const calculateExercises = (target: number, weekHours: number[]): finalResult =>
     return result;
 };
 
-const argsBool = process.argv.slice(3).map((arg) => isNotNumber(arg));
+
+//For console
+/* const argsBool = process.argv.slice(3).map((arg) => isNotNumber(arg));
 
 if (argsBool.every((bool) => bool)) {
     console.log("There is argument that is not a number");
 } else {
     const a: number = Number(process.argv[2]);
     const b: Array<number> = process.argv.slice(3).map(Number);
+    const obj: finalResult = calculateExercises(a, b);
     console.log(calculateExercises(a, b));
-}
+} */
 
 
 
