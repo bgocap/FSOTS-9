@@ -1,7 +1,7 @@
 <h1>Full Stack Web Development Open - Part 9</h1>
 
 TypeScript</br></br>
-Exercises are commits. Done **9** out of _29_
+Exercises are commits. Done **10** out of _29_
 </br></br>
 
 ```
@@ -21,10 +21,21 @@ Exercises are commits. Done **9** out of _29_
 📦Patientor-back
  ┣ 📂node_modules (gitignore)
  ┣ 📂build
- ┃ ┣ 📜index.js
+ ┃ ┗📜index.js
+ ┣ 📂src
+ ┃  ┣ 📂data
+ ┃  ┃ ┣ 📜diagnoses.ts
+ ┃  ┃ ┗ 📜patients.ts
+ ┃  ┣ 📂controllers
+ ┃  ┣ 📂models
+ ┃  ┣ 📂routes
+ ┃  ┃ ┗ 📜diagnoses.ts
+ ┃  ┣ 📂services
+ ┃  ┃ ┗ 📜diagnosesService.ts
+ ┃  ┣ 📜index.ts
+ ┃  ┗ 📜types.ts
  ┣ 📜.eslintignore
  ┣ 📜.eslintrc
- ┣ 📜index.ts
  ┣ 📜tsconfig.json
  ┣ 📜package-lock.json
  ┗ 📜package.json
