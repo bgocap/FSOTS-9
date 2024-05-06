@@ -1,7 +1,7 @@
 <h1>Full Stack Web Development Open - Part 9</h1>
 
 TypeScript</br></br>
-Exercises are commits. Done **10** out of _29_
+Exercises are commits. Done **11** out of _29_
 </br></br>
 
 ```
@@ -26,12 +26,12 @@ Exercises are commits. Done **10** out of _29_
  ┃  ┣ 📂data
  ┃  ┃ ┣ 📜diagnoses.ts
  ┃  ┃ ┗ 📜patients.ts
- ┃  ┣ 📂controllers
- ┃  ┣ 📂models
  ┃  ┣ 📂routes
+ ┃  ┃ ┣ 📜patients.ts
  ┃  ┃ ┗ 📜diagnoses.ts
  ┃  ┣ 📂services
- ┃  ┃ ┗ 📜diagnosesService.ts
+ ┃  ┃ ┣ 📜patinetService.ts
+ ┃  ┃ ┗ 📜diagnoseService.ts
  ┃  ┣ 📜index.ts
  ┃  ┗ 📜types.ts
  ┣ 📜.eslintignore
