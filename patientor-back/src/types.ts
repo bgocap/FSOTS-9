@@ -1,3 +1,4 @@
+
 export interface Diagnose {
     code: string;
     name: string;
@@ -12,6 +13,8 @@ export interface Patient {
     gender: string;
     occupation: string;
 }
+
+export type NewPatient = Omit<Patient, 'id'>;
 
 export type NonSensitiveDiagnose = Omit<Diagnose, 'latin'>;
 
