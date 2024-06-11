@@ -22,4 +22,4 @@ export interface DiaryEntry {
 }
 
 
-export type DiaryEntryFormValues = Omit<DiaryEntry, "id" | "comment">;
+export type DiaryEntryFormValues = Omit<DiaryEntry, "id">;
