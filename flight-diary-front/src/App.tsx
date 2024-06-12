@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios';
 import './App.css'
 import diaryService from "./services/diaries"
 import { DiaryEntry, Weather, Visibility } from './types';
@@ -9,12 +10,8 @@ function App() {
   const [visibility,setVisibility] = useState("")
   const [comment,setComment] = useState("")
   const [diaryEntries, setEntries] = useState<DiaryEntry[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-/*   const diaryCreation = async (newBlog: DiaryEntryFormValues)  => {
-    const data = await diaryService.create(newBlog);
-    const updatedEntries = diaryEntries.concat(data)
-    setEntries(updatedEntries);
-  }; */
   const submitEntry = async( event : React.SyntheticEvent)=>{
     event.preventDefault();
     const obj = {
@@ -23,12 +20,25 @@ function App() {
       visibility: visibility as Visibility,
       comment:comment,
     };
-    const newEntry = await diaryService.create(obj);
-    setEntries(diaryEntries.concat(newEntry))
-    setDate("");
-    setComment("");
-    setWeather("");
-    setVisibility("");
+
+    try {
+      const newEntry = await diaryService.create(obj);
+      setEntries(diaryEntries.concat(newEntry));
+      setDate("");
+      setComment("");
+      setWeather("");
+      setVisibility("");
+      setError(null);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.log("error status:",err.response?.status);
+        setError(`${err.response?.data}`);
+        setTimeout(() => {setError(null);}, 5000);
+      } else {
+        setError(`Unexpected error: ${err}`);
+        setTimeout(() => {setError(null);}, 5000);
+      }
+    }
   }
 
   useEffect(() => {
@@ -41,7 +51,8 @@ function App() {
 
   return (
     <>
-    {/* <NewEntryForm submitEntryHandler={diaryCreation}/> */}
+    <h2>Create Entries</h2>
+    {error && <p style={{ color: 'red'}}>{error}</p>}
     <form onSubmit={(event)=>submitEntry(event)}>
         <label htmlFor="input">Date: </label>
         <input id="date" type="text"
@@ -65,9 +76,10 @@ function App() {
         />
         <button type="submit">Create</button>
     </form>
+    <h2>Diary Entries</h2>
     {diaryEntries.map((item)=>(
       <div key={item.id}>
-        <h2>{item.date}</h2>
+        <h3>{item.date}</h3>
         <p>Visibility :{item.visibility}</p>
         <p>Weather :{item.weather}</p>
         {item.comment && <p>Comment: {item.comment}</p>}

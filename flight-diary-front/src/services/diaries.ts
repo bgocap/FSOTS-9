@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { DiaryEntry, DiaryEntryFormValues } from "../types";
 import { apiBaseUrl } from "../constants"
 
@@ -14,8 +15,8 @@ const create = async (object: DiaryEntryFormValues) => {
         `${apiBaseUrl}/diaries`,
         object
     );
-
     return data;
+
 };
 
 export default {
